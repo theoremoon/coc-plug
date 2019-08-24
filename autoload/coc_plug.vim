@@ -1,6 +1,7 @@
 if exists('g:loaded_coc_plug')
   finish
 endif
+let g:loaded_coc_plug = 1
 
 
 function! s:ListToDictKeys(xs,v)
@@ -11,9 +12,16 @@ function! s:ListToDictKeys(xs,v)
   return dict
 endf
 
-function! coc_plug#init()
-  let g:loaded_coc_plug = 1
+function! coc_plug#begin()
   let g:coc_plugs_order = []
+
+  command! -nargs=1 CocPlug call coc_plug#add(<args>)
+  command! -nargs=0 CocPlugList echo g:coc_plugs_order
+  command! -nargs=0 CocPlugInstall call coc_plug#install()
+  command! -nargs=0 CocPlugClean call coc_plug#clean()
+endf
+
+function! coc_plug#end()
 endf
 
 function! coc_plug#add(plug)
@@ -53,4 +61,3 @@ function! coc_plug#clean()
   call coc#rpc#notify('CocAction', args)
 endf
 
-call coc_plug#init()
