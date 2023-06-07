@@ -49,7 +49,7 @@ function! coc_plug#install()
 endf
 
 function! coc_plug#clean()
-  let args = ['uninstallExtension']
+  let args = []
   let installed_list = coc_plug#list_cocplugins()
   let order = s:ListToDictKeys(g:coc_plugs_order, 1)
   for plug in installed_list
@@ -58,6 +58,6 @@ function! coc_plug#clean()
     endif
   endfor
 
-  call coc#rpc#notify('CocAction', args)
+  call CocActionAsync(args)
 endf
 
