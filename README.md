@@ -1,3 +1,6 @@
+use `coc_global_extensions`
+
+
 # coc-plug
 
 A coc extension manager
